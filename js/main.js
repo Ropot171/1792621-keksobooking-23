@@ -1,7 +1,7 @@
 //Первая функция 
 function getRandomNumber(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
+    let min = Math.ceil(min);
+    let max = Math.floor(max);
    if ( max < min){
   console.log('Значение максильного числа не должно быть меньше значения минимального числа')
   }
@@ -32,4 +32,3 @@ function getRandomNumber(min, max) {
       */
     }
     }
-    
