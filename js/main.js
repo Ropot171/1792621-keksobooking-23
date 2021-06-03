@@ -1,7 +1,7 @@
  
 function getRandomNumber(min, max) {
-    let minNumber = Math.ceil(min);
-    let maxNumber = Math.floor(max);
+    const minNumber = Math.ceil(min);
+    const maxNumber = Math.floor(max);
     if ( maxNumber < minNumber){
        throw new RangeError('Значение максильного числа не должно быть меньше значения минимального числа')
     } else if (maxNumber === minNumber) {
@@ -14,13 +14,13 @@ function getRandomNumber(min, max) {
    https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
    */
 
-function getRandomCoordinates(minNumber, maxNumber, quantity) {
-    if ( maxNumber < minNumber){
+function getRandomCoordinates(minParameter, maxParameter, quantity) {
+    if ( maxParameter < minParameter){
         throw new RangeError('Значение максильных координат не должно быть меньше значения минимальных координат')
-    } else if (maxNumber === minNumber) {
-        console.warn(minNumber)
+    } else if (maxParameter === minParameter) {
+        console.warn(minParameter)
     } else {
-        const result =  Math.random() * (maxNumber - minNumber) + minNumber;
+        const result =  Math.random() * (maxParameter - minParameter) + minParameter;
         return Number(result.toFixed(quantity)); 
     /*Про number и как распарсить в число подсказал разработчик на работе
      и взяла из документации про
