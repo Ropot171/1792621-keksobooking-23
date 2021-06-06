@@ -6,24 +6,18 @@ function getRandomNumber(min, max) {
   } else if (maxNumber === minNumber) {
     console.warn(min); //можно вернуть minNumber, но этим мы можем запутать пользователя
   } else {
-    return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-  } 
-}  
-  /*написала функцию с помощью документации
-   https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-   */
-
-function getRandomCoordinates(minParameter, maxParameter, quantity) {
-  if ( maxParameter < minParameter){
-    throw new RangeError('Значение максильных координат не должно быть меньше значения минимальных координат');
-  } else if (maxParameter === minParameter) {
-    console.warn(minParameter);
-  } else {
-    const result =  Math.random() * (maxParameter - minParameter) + minParameter;
-    return Number(result.toFixed(quantity)); 
-    /*Про number и как распарсить в число подсказал разработчик на работе
-     и взяла из документации про
-      .toFixed https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
-      */
+  return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
   }
 }
+getRandomNumber(500, 600);
+function getRandomFloat(minParameter, maxParameter, quantity) {
+  if ( maxParameter < minParameter){
+    throw new RangeError('Максимальное значение не должно быть меньше минимального значения');
+  } else if (maxParameter === minParameter) {
+    throw new RangeError('Максимальное значение не должно быть равно минимальному значению. Результат + minParameter');
+  } else {
+    const result =  Math.random() * (maxParameter - minParameter) + minParameter;
+  return Number(result.toFixed(quantity)); 
+  }
+}
+getRandomFloat(135.38490, 138.32789, 3);
