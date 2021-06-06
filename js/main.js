@@ -7,7 +7,7 @@ function getRandomNumber(min, max) {
     throw new RangeError('Максимальное значение числа не должно быть равно минимальному значению числа. Результат + min');
   } else {
     return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-}
+  }
 }
 getRandomNumber(500, 600);
 function getRandomFloat(minParameter, maxParameter, quantity) {
@@ -17,7 +17,7 @@ function getRandomFloat(minParameter, maxParameter, quantity) {
     throw new RangeError('Максимальное значение не должно быть равно минимальному значению. Результат + minParameter');
   } else {
     const result =  Math.random() * (maxParameter - minParameter) + minParameter;
-    return Number(result.toFixed(quantity)); 
-}
+    return Number(result.toFixed(quantity));
+  }
 }
 getRandomFloat(135.38490, 138.32789, 3);
