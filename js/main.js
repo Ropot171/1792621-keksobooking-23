@@ -9,6 +9,7 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
   }
 }
+
 function getRandomFloat(minParameter, maxParameter, quantity) {
   if ( maxParameter < minParameter){
     throw new RangeError('Максимальное значение не должно быть меньше минимального значения');
@@ -19,25 +20,31 @@ function getRandomFloat(minParameter, maxParameter, quantity) {
     return Number(result.toFixed(quantity));
   }
 }
-const arrPhotos =['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
-function getRandomPlace() {
-  const arr = ['palace', 'flat', 'house', 'bungalow','hotel'];
-  const index = getRandomNumber(0, 3);
-  return arr[index];
+const Photos = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+];
+
+const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
+
+function getRandomElement(list) {
+  return list[Math.floor((Math.random()*list.length))];
 }
+
 function getRandomTime () {
   const arr = ['12:00', '13:00', '14:00'];
   const index = getRandomNumber(0, 2);
   return arr[index];
 }
-function GenerateObjects() {
+
+function generateObjects() {
   const result = [];
   for (let index = 0; index < 10; index++){
     const objects = {
       author: {
-        avatar: /*/img/avatars/user*/`0${getRandomNumber(1,8)}`,/*.png*/
-        /*не знаю, как правильно вывести эту строку, постоянно выпадает ошибка,буду благодарна совету*/
+        avatar: `/img/avatars/user0${getRandomNumber(1,8)}.png`,
       },
       offer: {
         title: 'Заголовок предложения',
@@ -47,14 +54,14 @@ function GenerateObjects() {
            return ${location.lat},${location.lng}
           }*/
         price:getRandomNumber(0, 1000000),
-        type: getRandomPlace(),
+        type: getRandomElement(placeTypes),
         rooms: getRandomNumber(0, 1000000),
         guests: getRandomNumber(0, 1000000),
         checkin: getRandomTime(),
         checkout: getRandomTime(),
         features: 'wifi, dishwasher, parking, washer, elevator, conditioner',
         description: 'Очень красивое и светлое помещение, заезжайте',
-        photos: arrPhotos.join(', '),
+        photos: Photos.join(', '),
       },
       location:{
         lat: getRandomFloat(35.65000, 35.70000,5),
@@ -65,4 +72,5 @@ function GenerateObjects() {
   }
   return result;
 }
-GenerateObjects();
+
+generateObjects();
