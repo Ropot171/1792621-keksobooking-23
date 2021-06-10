@@ -1,3 +1,18 @@
+const location = {
+  lat: getRandomFloat(35.65000, 35.70000,5),
+  lng: getRandomFloat(139.70000, 139.80000,5),
+};
+
+const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
+
+const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
+const photos = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+];
+
 function getRandomNumber(min, max) {
   const minNumber = Math.ceil(min);
   const maxNumber = Math.floor(max);
@@ -21,42 +36,13 @@ function getRandomFloat(minParameter, maxParameter, quantity) {
   }
 }
 
-const location = {
-  lat: getRandomFloat(35.65000, 35.70000,5),
-  lng: getRandomFloat(139.70000, 139.80000,5),
-};
-
-const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
-
-const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-
-function getRandomFeatures(features) {
-  const maxLength = features.length;
+function getRandomLine(line) {
+  const maxLength = line.length;
   const lengthOfArray = getRandomNumber(1, maxLength);
   const array = [];
-  for(let i = 0;i < lengthOfArray;i++) {
-    const indexOfEl = getRandomNumber(0, 5);
-    const el = features[indexOfEl];
-    if (!array.includes(el)) {
-      array.push(el);
-    }
-  }
-  return array;
-}
-
-const photos = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
-
-function getRandomPhotos(photos) {
-  const maxLength = photos.length;
-  const lengthOfArray = getRandomNumber(1, maxLength);
-  const array = [];
-  for(let i = 0;i < lengthOfArray;i++) {
-    const indexOfEl = getRandomNumber(0, 2);
-    const el = photos[indexOfEl];
+  while (array.length < lengthOfArray) {
+    const indexOfEl = getRandomNumber(0, maxLength - 1);
+    const el = line[indexOfEl];
     if (!array.includes(el)) {
       array.push(el);
     }
@@ -90,9 +76,9 @@ function generateObjects() {
         guests: getRandomNumber(0, 1000000),
         checkin: getRandomTime(),
         checkout: getRandomTime(),
-        features: getRandomFeatures(features),
+        features: getRandomLine(features),
         description: 'Очень красивое и светлое помещение, заезжайте',
-        photos: getRandomPhotos(photos),
+        photos: getRandomLine(photos),
       },
       location: location,
     };
