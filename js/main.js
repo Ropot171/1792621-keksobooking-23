@@ -27,6 +27,11 @@ const Photos = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
+const location = {
+  lat: getRandomFloat(35.65000, 35.70000,5),
+  lng: getRandomFloat(139.70000, 139.80000,5),
+};
+
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 function getRandomElement(list) {
@@ -48,11 +53,7 @@ function generateObjects() {
       },
       offer: {
         title: 'Заголовок предложения',
-        address: 'location.lat, location.lng',
-        /*Я не очень понимаю, что тут имеется в виду, добавила функцию, но не сработало
-          function getAdress(location) {
-           return ${location.lat},${location.lng}
-          }*/
+        address: `${location.lat}, ${location.lng}`,
         price:getRandomNumber(0, 1000000),
         type: getRandomElement(placeTypes),
         rooms: getRandomNumber(0, 1000000),
@@ -63,10 +64,7 @@ function generateObjects() {
         description: 'Очень красивое и светлое помещение, заезжайте',
         photos: Photos.join(', '),
       },
-      location:{
-        lat: getRandomFloat(35.65000, 35.70000,5),
-        lng: getRandomFloat(139.70000, 139.80000,5),
-      },
+      location: location,
     };
     result.push(objects);
   }
