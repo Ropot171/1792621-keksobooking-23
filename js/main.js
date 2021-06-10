@@ -1,8 +1,3 @@
-const location = {
-  lat: getRandomFloat(35.65000, 35.70000,5),
-  lng: getRandomFloat(139.70000, 139.80000,5),
-};
-
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -35,6 +30,11 @@ function getRandomFloat(minParameter, maxParameter, quantity) {
     return Number(result.toFixed(quantity));
   }
 }
+
+const location = {
+  lat: getRandomFloat(35.65000, 35.70000,5),
+  lng: getRandomFloat(139.70000, 139.80000,5),
+};
 
 function getRandomLine(line) {
   const maxLength = line.length;
