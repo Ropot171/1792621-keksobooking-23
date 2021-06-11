@@ -15,6 +15,10 @@ const time = ['12:00', '13:00', '14:00'];
 function generateObjects() {
   const result = [];
   for (let index = 0; index < 10; index++){
+    const location = {
+      lat: getRandomFloat(35.65000, 35.70000,5),
+      lng: getRandomFloat(139.70000, 139.80000,5),
+    };
     const object = {
       author: {
         avatar: `/img/avatars/user0${getRandomNumber(1,8)}.png`,
@@ -32,10 +36,7 @@ function generateObjects() {
         description: 'Очень красивое и светлое помещение, заезжайте',
         photos: getRandomArray(photos),
       },
-      location: {
-        lat: getRandomFloat(35.65000, 35.70000,5),
-        lng: getRandomFloat(139.70000, 139.80000,5),
-      },
+      location: location,
     };
     result.push(object);
   }
