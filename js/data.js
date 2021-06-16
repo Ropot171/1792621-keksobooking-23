@@ -42,5 +42,4 @@ function generateObjects() {
   }
   return result;
 }
-
-generateObjects();
+export {generateObjects};

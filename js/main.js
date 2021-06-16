@@ -1,1 +1,2 @@
-import './data.js';
+import {generateObjects} from './data.js';
+generateObjects();
