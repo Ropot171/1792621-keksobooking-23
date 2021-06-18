@@ -15,5 +15,5 @@ popElement.querySelector('.popup__text--time').textContent = `Заезд пос�
 popElement.querySelectorAll('.popup__features');
 popElement.querySelector('.popup__description').textContent = offer.description;
 popElement.querySelector('.popup__photos').picture.src = offer.photos;
-similarListElement.appendChild(wizardElement);
+similarListElement.appendChild(popElement);
 )};
