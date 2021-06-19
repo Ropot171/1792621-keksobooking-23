@@ -1,3 +1,2 @@
-import {generateObjects} from './data.js';
-import './popup.js';
-generateObjects();
+import {generateTemplate} from'./popup.js';
+generateTemplate();
