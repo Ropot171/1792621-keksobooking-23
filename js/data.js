@@ -42,4 +42,8 @@ function generateObjects() {
   }
   return result;
 }
+window.data = {
+  offers: generateObjects(window.constandvars.OFFER_COUNT),
+};
+
 export {generateObjects};

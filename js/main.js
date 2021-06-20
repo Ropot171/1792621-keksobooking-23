@@ -1,2 +1,2 @@
-import {generateTemplate} from'./popup.js';
-generateTemplate();
+import {getCards } from'./popup.js';
+getCards ();
