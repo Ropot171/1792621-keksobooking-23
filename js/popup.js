@@ -1,4 +1,5 @@
 import './data.js';
+import './map.js';
 
 var getPhotos = function (data) {
     var photos = document.createDocumentFragment();
