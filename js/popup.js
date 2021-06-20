@@ -22,7 +22,7 @@ var ApartmentType = {
 
 function getFeatures(data) {
     plaseListElement = document.querySelector('.popup__features');
-  const modifers = features.map((features) => popup__features--${features});
+  const modifers = features.map((features) => `popup__features--${features}`);
   plaseListElement.querySelectorAll('.popup__features').forEach((item) => {
       const modifer = item.classList[1];
       if (!modifers.includes(modifer)) {
