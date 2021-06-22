@@ -3,18 +3,18 @@ function getPhotos (card) {
   for (let i = 0; i < card.length; i++) {
     const photo = document.createElement('img');
     photo.src = card[i];
-    photo.style = 'width:' + '70px';
+    photo.style = 'width: 70px';
     photos.appendChild(photo);
   }
   return photos;
-};
+}
 
 const ApartmentType = {
   PALACE: 'Дворец',
   FLAT: 'Квартира',
   HOUSE: 'Дом',
   BUNGALO: 'Бунгало',
-  HOTEL: 'Отель'
+  HOTEL: 'Отель',
 };
 
 function getFeatures (card) {
@@ -26,7 +26,7 @@ function getFeatures (card) {
     features.appendChild(feature);
   }
   return features;
-};
+}
 
 function generateRoomText({ offer }) {
   const room = offer.rooms;
