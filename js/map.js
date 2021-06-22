@@ -1,4 +1,4 @@
-let adForm = document.querySelector('.ad-form');
+/*let adForm = document.querySelector('.ad-form');
 let adFormFieldsets = document.querySelectorAll('.ad-form__element');
 let adFormHeader = document.querySelector('.ad-form-header');
 let resetBtn = document.querySelector('.ad-form__reset');
@@ -21,4 +21,4 @@ let deactivateForm = function () {
 };
 
 deactivateForm();
-window.filter.deactivate();
+window.filter.deactivate(); */

@@ -1,2 +1,1 @@
-import {getCards } from'./popup.js';
-getCards ();
+import './data.js';

@@ -1,5 +1,5 @@
 import {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement} from './util.js';
-
+import {renderCard} from'./popup.js';
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -42,8 +42,7 @@ function generateObjects() {
   }
   return result;
 }
-window.data = {
-  offers: generateObjects(window.constandvars.OFFER_COUNT),
-};
 
-export {generateObjects};
+const offers = generateObjects(OFFER_COUNT);
+
+renderCard(offers[0]);
