@@ -1,3 +1,5 @@
-import generateObjects from './data.js';
+import {generateObjects} from './data.js';
+import {renderCard} from'./card.js';
 
-generateObjects();
+const offers = generateObjects();
+renderCard(offers[0]);

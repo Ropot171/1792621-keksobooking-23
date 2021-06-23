@@ -1,5 +1,5 @@
 import {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement} from './util.js';
-import {renderCard} from'./renderMap.js';
+
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -43,7 +43,4 @@ function generateObjects() {
   return result;
 }
 
-export default generateObjects;
-
-const offers = generateObjects();
-renderCard(offers[0]);
+export {generateObjects};
