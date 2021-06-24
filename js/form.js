@@ -41,3 +41,16 @@ adForm.type.addEventListener('change', () => {
   adForm.price.min = TypeHouse[adForm.type.value].minPrice;
   adForm.price.placeholder = TypeHouse[adForm.type.value].minPrice;
 });
+
+const selectTime = {
+  '12:00':['12:00'],
+  '13:00':['13:00'],
+  '14:00':['14:00'],
+};
+adForm['timein'].addEventListener('change', (e) => {
+  const numberTimes = selectTime[e.target.value];
+  for (const currentTimeoutItem of adForm.timeout.children) {
+    currentTimeoutItem.disabled = !numberTimes.includes(currentTimeoutItem.value);
+  }
+  adForm.timeout.value = numberTimes[0];
+});
