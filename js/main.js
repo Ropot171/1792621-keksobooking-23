@@ -1,2 +1,5 @@
 import {generateObjects} from './data.js';
-generateObjects();
+import {renderCard} from'./card.js';
+
+const offers = generateObjects();
+renderCard(offers[0]);
