@@ -13,3 +13,31 @@ adForm['room_number'].addEventListener('change', (e) => {
   }
   adForm.capacity.value = numberRooms[0];
 });
+
+const TypeHouse = {
+  flat: {
+    name: 'Квартира',
+    minPrice: 1000,
+  },
+  bungalow: {
+    name: 'Бунгало',
+    minPrice: 0,
+  },
+  house: {
+    name: 'Дом',
+    minPrice: 5000,
+  },
+  palace: {
+    name: 'Дворец',
+    minPrice: 10000,
+  },
+  hotel: {
+    name: 'Отель',
+    minPrice: 3000,
+  },
+};
+
+adForm.type.addEventListener('change', () => {
+  adForm.price.min = TypeHouse[adForm.type.value].minPrice;
+  adForm.price.placeholder = TypeHouse[adForm.type.value].minPrice;
+});
