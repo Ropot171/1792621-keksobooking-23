@@ -11,5 +11,7 @@ adForm['room_number'].addEventListener('change', (e) => {
   for (const currentCapacityItem of adForm.capacity.children) {
     currentCapacityItem.disabled = !numberRooms.includes(currentCapacityItem.value);
   }
-  adForm.capacity.value = numberRooms[0];
+  if (adForm.room_number.value < adForm.capacity.value) {
+    adForm.capacity.value = numberRooms[0];
+  }
 });
