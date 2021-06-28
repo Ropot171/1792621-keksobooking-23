@@ -16,7 +16,7 @@ adForm['room_number'].addEventListener('change', (e) => {
   }
 });
 
-const TypeHouse = {
+const TYPE_HOUSE = {
   flat: {
     name: 'Квартира',
     minPrice: 1000,
@@ -40,19 +40,14 @@ const TypeHouse = {
 };
 
 adForm.type.addEventListener('change', () => {
-  adForm.price.min = TypeHouse[adForm.type.value].minPrice;
-  adForm.price.placeholder = TypeHouse[adForm.type.value].minPrice;
+  adForm.price.min = TYPE_HOUSE[adForm.type.value].minPrice;
+  adForm.price.placeholder = TYPE_HOUSE[adForm.type.value].minPrice;
 });
 
-const selectTime = {
-  '12:00':['12:00'],
-  '13:00':['13:00'],
-  '14:00':['14:00'],
-};
-adForm['timein'].addEventListener('change', (e) => {
-  const numberTimes = selectTime[e.target.value];
-  for (const currentTimeoutItem of adForm.timeout.children) {
-    currentTimeoutItem.disabled = !numberTimes.includes(currentTimeoutItem.value);
-  }
-  adForm.timeout.value = numberTimes[0];
+adForm['timein'].addEventListener('change', () => {
+  adForm['timeout'].value = adForm['timein'].value;
+});
+
+adForm['timeout'].addEventListener('change', () => {
+  adForm['timein'].value = adForm['timeout'].value;
 });
