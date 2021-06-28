@@ -1,5 +1,5 @@
 const adForm = document.querySelector('.ad-form');
-const roomForGuest = {
+const ROOMS_FOR_GUESTS = {
   1: ['1'],
   2: ['1', '2'],
   3: ['1', '2', '3'],
@@ -7,11 +7,13 @@ const roomForGuest = {
 };
 
 adForm['room_number'].addEventListener('change', (e) => {
-  const numberRooms = roomForGuest[e.target.value];
+  const numberRooms = ROOMS_FOR_GUESTS[e.target.value];
   for (const currentCapacityItem of adForm.capacity.children) {
     currentCapacityItem.disabled = !numberRooms.includes(currentCapacityItem.value);
   }
-  adForm.capacity.value = numberRooms[0];
+  if (!numberRooms.includes(adForm.capacity.value)) {
+    adForm.capacity.value = numberRooms[0];
+  }
 });
 
 const TypeHouse = {
