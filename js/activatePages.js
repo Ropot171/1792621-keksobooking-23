@@ -9,10 +9,10 @@ const disableTheForm = (isDisabled) => {
   });
 };
 
-const activateThePage = (state) => {
+const noActivateThePage = (state) => {
   adForm.classList.toggle('ad-form--disabled', state);
   formFilter.classList.toggle('ad-form--disabled', state);
   disableTheForm(state);
 };
 
-export {activateThePage};
+export {noActivateThePage};
