@@ -1,7 +1,7 @@
 const adForm = document.querySelector('.ad-form');
 const formFilter = document.querySelector('.map__filters');
 
-const DisabledOnFormNodes = (isDisabled) => {
+const disableTheForm = (isDisabled) => {
   [adForm, formFilter].forEach((form) => {
     for (const element of form.elements) {
       element.disabled = isDisabled;
@@ -9,10 +9,10 @@ const DisabledOnFormNodes = (isDisabled) => {
   });
 };
 
-const PageActiveState = (bool) => {
-  adForm.classList.toggle('ad-form--disabled', bool);
-  formFilter.classList.toggle('ad-form--disabled', bool);
-  DisabledOnFormNodes(bool);
+const activateThePage = (state) => {
+  adForm.classList.toggle('ad-form--disabled', state);
+  formFilter.classList.toggle('ad-form--disabled', state);
+  disableTheForm(state);
 };
 
-export {PageActiveState};
+export {activateThePage};
