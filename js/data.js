@@ -42,5 +42,15 @@ function generateObjects() {
   }
   return result;
 }
+const createAd = () => {
+  const location = generateObjects.location;
+  return {
+    author: generateObjects.object,
+    offer: generateObjects.offer,
+    location,
+  };
+};
 
-export {generateObjects};
+const adSet = new Array(generateObjects()).fill(null).map(createAd);
+
+export {adSet,generateObjects};

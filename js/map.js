@@ -1,8 +1,10 @@
+import {adSet} from './data.js';
+import {renderCard} from './card.js';
 const adForm = document.querySelector('.ad-form');
 
 const map = L.map('map-canvas')
   .on('load', () => {
-    'fd'; //PageActiveState(false);
+    'fd'; //ActiveState(false);
   })
   .setView({
     lat: 35.6804,
@@ -30,7 +32,7 @@ const additionalIcon = L.icon({
 
 const mainMarker = L.marker( //добавляем метку, координаты токио
   {
-    lat: 35.6804, //перевести позже в константу в data
+    lat: 35.6804,
     lng: 139.769,
   },
   {
@@ -49,4 +51,28 @@ mainMarker.on('mousemove', (evt) => {
   adForm.address.value = addressValue(evt.target);
 });
 
-//написать событие, которое выполнит 5 и 6 задание
+const markerGroup = L.layerGroup().addTo(map);
+
+const createMarker = (ad) => {
+  const marker = L.marker(
+    ad.location,
+    {
+      icon: additionalIcon,
+    },
+  );
+  return marker;
+};
+
+adSet.forEach((ad) => {
+  const marker = createMarker(ad);
+  marker
+    .addTo(markerGroup)
+    .bindPopup(
+      renderCard(ad),
+      {
+        keepInView: true,
+      },
+    );
+});
+
+export {map};
