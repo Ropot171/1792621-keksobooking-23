@@ -1,10 +1,11 @@
-import {adSet} from './data.js';
+import {ads} from './data.js';
 import {renderCard} from './card.js';
+import {changePageState} from './page.js';
 const adForm = document.querySelector('.ad-form');
 
 const map = L.map('map-canvas')
   .on('load', () => {
-    'fd'; //ActiveState(false);
+    changePageState(false);
   })
   .setView({
     lat: 35.6804,
@@ -43,7 +44,10 @@ const mainMarker = L.marker( //добавляем метку, координат
 
 mainMarker.addTo(map);
 
-const addressValue = (marker) => `${marker.getLatLng().lat.toFixed(5)}, ${marker.getLatLng().lng.toFixed(5)}`;
+function addressValue (marker) {
+  const coordinates = `${marker.getLatLng().lat.toFixed(5)},${marker.getLatLng().lng.toFixed(5)}`;
+  return coordinates;
+}
 
 adForm.address.value = addressValue(mainMarker);
 
@@ -63,7 +67,7 @@ const createMarker = (ad) => {
   return marker;
 };
 
-adSet.forEach((ad) => {
+ads.forEach((ad) => {
   const marker = createMarker(ad);
   marker
     .addTo(markerGroup)

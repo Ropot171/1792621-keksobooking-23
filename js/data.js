@@ -1,5 +1,7 @@
 import {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement} from './util.js';
 
+const ADS_COUNT = 10;
+
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -13,44 +15,43 @@ const photos = [
 const time = ['12:00', '13:00', '14:00'];
 
 function generateObjects() {
-  const result = [];
-  for (let index = 0; index < 10; index++){
-    const location = {
-      lat: getRandomFloat(35.65000, 35.70000,5),
-      lng: getRandomFloat(139.70000, 139.80000,5),
-    };
-    const object = {
-      author: {
-        avatar: `/img/avatars/user0${getRandomNumber(1,8)}.png`,
-      },
-      offer: {
-        title: 'Заголовок предложения',
-        address: `${location.lat}, ${location.lng}`,
-        price:getRandomNumber(0, 1000000),
-        type: getRandomElement(placeTypes),
-        rooms: getRandomNumber(0, 1000000),
-        guests: getRandomNumber(0, 1000000),
-        checkin: getRandomElement(time) ,
-        checkout: getRandomElement(time) ,
-        features: getRandomArray(features),
-        description: 'Очень красивое и светлое помещение, заезжайте',
-        photos: getRandomArray(photos),
-      },
-      location: location,
-    };
-    result.push(object);
-  }
-  return result;
+  const location = {
+    lat: getRandomFloat(35.65000, 35.70000,5),
+    lng: getRandomFloat(139.70000, 139.80000,5),
+  };
+  const object = {
+    author: {
+      avatar: `/img/avatars/user0${getRandomNumber(1,8)}.png`,
+    },
+    offer: {
+      title: 'Заголовок предложения',
+      address: `${location.lat}, ${location.lng}`,
+      price:getRandomNumber(0, 1000000),
+      type: getRandomElement(placeTypes),
+      rooms: getRandomNumber(0, 1000000),
+      guests: getRandomNumber(0, 1000000),
+      checkin: getRandomElement(time) ,
+      checkout: getRandomElement(time) ,
+      features: getRandomArray(features),
+      description: 'Очень красивое и светлое помещение, заезжайте',
+      photos: getRandomArray(photos),
+    },
+    location: location,
+  };
+
+  return object;
 }
-const createAd = () => {
-  const location = generateObjects.location;
+
+function createAd () {
+  const { location, object, offer} = generateObjects();
+
   return {
-    author: generateObjects.object,
-    offer: generateObjects.offer,
+    author: object,
+    offer,
     location,
   };
-};
+}
 
-const adSet = new Array(generateObjects()).fill(null).map(createAd);
+const ads = new Array(ADS_COUNT).fill(null).map(createAd);
 
-export {adSet,generateObjects};
+export {generateObjects,ads};

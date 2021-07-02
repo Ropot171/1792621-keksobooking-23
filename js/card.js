@@ -67,9 +67,9 @@ function renderCard(card) {
   getFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
   setTextContent(cardElement.querySelector('.popup__description'),card.offer.description);
   getPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
-  setTextContent(cardElement.querySelector('.popup__avatar'),card.author.avatar); {
-    document.querySelector('#map-canvas').appendChild(cardElement);
-  }
+  setTextContent(cardElement.querySelector('.popup__avatar'),card.author.avatar);
+  document.querySelector('#map-canvas').appendChild(cardElement);
+
   return cardElement;
 }
 
