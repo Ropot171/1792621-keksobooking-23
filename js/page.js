@@ -9,10 +9,10 @@ function disableTheForm(isDisabled) {
   });
 }
 
-function changePageState(isActive) {
-  adForm.classList.toggle('ad-form--disabled', isActive);
-  formFilter.classList.toggle('ad-form--disabled', isActive);
-  disableTheForm(isActive);
+function changePageState(isDisabled) {
+  adForm.classList.toggle('ad-form--disabled', isDisabled);
+  formFilter.classList.toggle('ad-form--disabled', isDisabled);
+  disableTheForm(isDisabled);
 }
 
 export {changePageState};
