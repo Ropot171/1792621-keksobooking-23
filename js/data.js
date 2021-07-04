@@ -14,43 +14,37 @@ const photos = [
 
 const time = ['12:00', '13:00', '14:00'];
 
-function generateObjects() {
-  const location = {
-    lat: getRandomFloat(35.65000, 35.70000,5),
-    lng: getRandomFloat(139.70000, 139.80000,5),
-  };
-  const object = {
-    author: {
-      avatar: `/img/avatars/user0${getRandomNumber(1,8)}.png`,
-    },
-    offer: {
-      title: 'Заголовок предложения',
-      address: `${location.lat}, ${location.lng}`,
-      price:getRandomNumber(0, 1000000),
-      type: getRandomElement(placeTypes),
-      rooms: getRandomNumber(0, 1000000),
-      guests: getRandomNumber(0, 1000000),
-      checkin: getRandomElement(time) ,
-      checkout: getRandomElement(time) ,
-      features: getRandomArray(features),
-      description: 'Очень красивое и светлое помещение, заезжайте',
-      photos: getRandomArray(photos),
-    },
-    location: location,
-  };
+const getAuthor = () => ({
+  avatar: `/img/avatars/user0${getRandomNumber(1,8)}.png`,
+});
 
-  return object;
-}
+const getLocation =  () => ({
+  lat: getRandomFloat(35.65000, 35.70000,5),
+  lng: getRandomFloat(139.70000, 139.80000,5),
+});
 
-function createAd () {
-  const { location, object, offer} = generateObjects();
+const generateObjects = (location) => ({
+  title: 'Заголовок предложения',
+  address: `${location.lat  }, ${  location.lng}`,
+  price:getRandomNumber(0, 1000000),
+  type: getRandomElement(placeTypes),
+  rooms: getRandomNumber(0, 1000000),
+  guests: getRandomNumber(0, 1000000),
+  checkin: getRandomElement(time) ,
+  checkout: getRandomElement(time) ,
+  features: getRandomArray(features),
+  description: 'Очень красивое и светлое помещение, заезжайте',
+  photos: getRandomArray(photos),
+});
 
+const createAd = () => {
+  const location = getLocation();
   return {
-    author: object,
-    offer,
+    author: getAuthor(),
+    offer: generateObjects(location),
     location,
   };
-}
+};
 
 const ads = new Array(ADS_COUNT).fill(null).map(createAd);
 
