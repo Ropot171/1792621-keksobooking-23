@@ -56,8 +56,8 @@ function setTextContent(element, textContent) {
 }
 
 function renderCard(card) {
-  const cardTemplate = document.querySelector('#card');
-  const cardElement = cardTemplate.cloneNode(true).content;
+  const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
+  const cardElement = cardTemplate.cloneNode(true);
   setTextContent(cardElement.querySelector('.popup__title'), card.offer.title);
   setTextContent(cardElement.querySelector('.popup__text--address'), card.offer.address);
   setTextContent(cardElement.querySelector('.popup__text--price'),`${card.offer.price} ₽/ночь`);
@@ -69,6 +69,8 @@ function renderCard(card) {
   getPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
   setTextContent(cardElement.querySelector('.popup__avatar'),card.author.avatar);
   document.querySelector('#map-canvas').appendChild(cardElement);
+
+  return cardElement;
 }
 
 export {renderCard};

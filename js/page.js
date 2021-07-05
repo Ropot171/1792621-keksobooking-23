@@ -1,4 +1,5 @@
-const adForm = document.querySelector('.ad-form');
+import {adForm} from './data.js';
+
 const formFilter = document.querySelector('.map__filters');
 
 function changeFormState(state) {
@@ -14,5 +15,7 @@ function changePageState(isDisabled) {
   formFilter.classList.toggle('ad-form--disabled', isDisabled);
   changeFormState(isDisabled);
 }
+
+changeFormState(true);
 
 export {changePageState};
