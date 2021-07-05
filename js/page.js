@@ -1,4 +1,5 @@
-const adForm = document.querySelector('.ad-form');
+import {adForm} from './data.js';
+
 const formFilter = document.querySelector('.map__filters');
 
 function changeFormState(state) {

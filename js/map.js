@@ -1,7 +1,7 @@
-import {ads} from './data.js';
+import {adForm} from './data.js';
 import {renderCard} from './card.js';
 import {changePageState} from './page.js';
-const adForm = document.querySelector('.ad-form');
+
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -67,16 +67,18 @@ const createMarker = (ad) => {
   return marker;
 };
 
-ads.forEach((ad) => {
-  const marker = createMarker(ad);
-  marker
-    .addTo(markerGroup)
-    .bindPopup(
-      renderCard(ad),
-      {
-        keepInView: true,
-      },
-    );
-});
+function addPoints(ads) {
+  ads.forEach((ad) => {
+    const marker = createMarker(ad);
+    marker
+      .addTo(markerGroup)
+      .bindPopup(
+        renderCard(ad),
+        {
+          keepInView: true,
+        },
+      );
+  });
+}
 
-export {map};
+export {addPoints};

@@ -1,5 +1,4 @@
-import './validate.js';
-import './card.js';
-import './data.js';
-import './map.js';
+import {ads} from './data.js';
+import {addPoints} from'./map.js';
 
+addPoints(ads);
