@@ -1,4 +1,5 @@
-import {ads} from './data.js';
-import {addPoints} from'./map.js';
+import {getData,setData} from './backend.js';
 
-addPoints(ads);
+getData();
+
+setData();

@@ -1,5 +1,4 @@
 import {adForm} from './data.js';
-
 const formFilter = document.querySelector('.map__filters');
 
 function changeFormState(state) {
@@ -18,4 +17,4 @@ function changePageState(isDisabled) {
 
 changeFormState(true);
 
-export {changePageState};
+export {changePageState,changeFormState};

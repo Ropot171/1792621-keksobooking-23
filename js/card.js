@@ -3,11 +3,15 @@ const imgTemplate = document.querySelector('#card').content.querySelector('.popu
 const getPhotos = function (element, array){
   element.innerHTML = '';
 
-  array.forEach((item) => {
-    const photo = imgTemplate.cloneNode(true);
-    photo.src = item;
-    element.appendChild(photo);
-  });
+  if (array) {
+    array.forEach((item) => {
+      const photo = imgTemplate.cloneNode(true);
+      photo.src = item;
+      element.appendChild(photo);
+    });
+  } else {
+    element.classList.add('hidden');
+  }
 };
 
 const ApartmentType = {
@@ -21,13 +25,16 @@ const ApartmentType = {
 const getFeatures = function (element, array) {
   {
     element.innerHTML = '';
-
-    array.forEach((item) => {
-      const featureItem = document.createElement('li');
-      featureItem.classList.add('popup__feature');
-      featureItem.classList.add(`popup__feature--${item}`);
-      element.appendChild(featureItem);
-    });
+    if (array) {
+      array.forEach((item) => {
+        const featureItem = document.createElement('li');
+        featureItem.classList.add('popup__feature');
+        featureItem.classList.add(`popup__feature--${item}`);
+        element.appendChild(featureItem);
+      });
+    } else {
+      element.classList.add('hidden');
+    }
   }
 };
 
