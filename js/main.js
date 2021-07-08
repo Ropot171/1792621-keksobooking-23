@@ -1,4 +1,4 @@
-import {ads} from './data.js';
-import {addPoints} from'./map.js';
+import {retrievingAndRenderingData,postAndProcessingData} from './api.js';
 
-addPoints(ads);
+retrievingAndRenderingData();
+postAndProcessingData();

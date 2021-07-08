@@ -2,8 +2,6 @@ import {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement} from '
 
 const adForm = document.querySelector('.ad-form');
 
-const ADS_COUNT = 10;
-
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -39,15 +37,4 @@ const generateObjects = (location) => ({
   photos: getRandomArray(photos),
 });
 
-const createAd = () => {
-  const location = getLocation();
-  return {
-    author: getAuthor(),
-    offer: generateObjects(location),
-    location,
-  };
-};
-
-const ads = new Array(ADS_COUNT).fill(null).map(createAd);
-
-export {ads,adForm};
+export {adForm};

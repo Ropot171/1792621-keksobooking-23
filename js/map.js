@@ -2,7 +2,6 @@ import {adForm} from './data.js';
 import {renderCard} from './card.js';
 import {changePageState} from './page.js';
 
-
 const map = L.map('map-canvas')
   .on('load', () => {
     changePageState(false);
@@ -55,30 +54,14 @@ mainMarker.on('mousemove', (evt) => {
   adForm.address.value = addressValue(evt.target);
 });
 
-const markerGroup = L.layerGroup().addTo(map);
-
-const createMarker = (ad) => {
-  const marker = L.marker(
-    ad.location,
-    {
+const addPoints = (ads) => {
+  ads.forEach((item) => {
+    const pinMarker = L.marker(item.location, {
+      draggable: true,
       icon: additionalIcon,
-    },
-  );
-  return marker;
-};
-
-function addPoints(ads) {
-  ads.forEach((ad) => {
-    const marker = createMarker(ad);
-    marker
-      .addTo(markerGroup)
-      .bindPopup(
-        renderCard(ad),
-        {
-          keepInView: true,
-        },
-      );
+    });
+    pinMarker.addTo(map).bindPopup(renderCard(item));
   });
-}
+};
 
 export {addPoints};
