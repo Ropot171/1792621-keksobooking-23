@@ -2,6 +2,11 @@ import {adForm} from './data.js';
 import {renderCard} from './card.js';
 import {changePageState} from './page.js';
 
+const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
+const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
+const MAP_FILTERS_CLASS = '.map__filters';
+const POINTS_COUNT = 10;
+
 const map = L.map('map-canvas')
   .on('load', () => {
     changePageState(false);
@@ -64,4 +69,4 @@ const addPoints = (ads) => {
   });
 };
 
-export {addPoints};
+export {addPoints,ADDRESS_POST,ADDRESS_GET,MAP_FILTERS_CLASS,POINTS_COUNT};

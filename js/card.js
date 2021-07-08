@@ -1,6 +1,6 @@
 const imgTemplate = document.querySelector('#card').content.querySelector('.popup__photo');
 
-const additionPhotos = function (element, list){
+const addPhotos = function (element, list){
   element.innerHTML = '';
 
   if (list) {
@@ -22,7 +22,7 @@ const ApartmentType = {
   HOTEL: 'Отель',
 };
 
-const additionFeatures = function (element, list) {
+const addFeatures = function (element, list) {
   {
     element.innerHTML = '';
     if (list) {
@@ -71,9 +71,9 @@ function renderCard(card) {
   setTextContent(cardElement.querySelector('.popup__type'), ApartmentType[card.offer.type.toUpperCase()]);
   setTextContent(cardElement.querySelector('.popup__text--capacity'), generateRoomText(card));
   setTextContent(cardElement.querySelector('.popup__text--time'),`Заезд после ${card.offer.checkin}, выезд до ${card.offer.checkout}`);
-  additionFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
+  addFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
   setTextContent(cardElement.querySelector('.popup__description'),card.offer.description);
-  additionPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
+  addPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
   setTextContent(cardElement.querySelector('.popup__avatar'),card.author.avatar);
   document.querySelector('#map-canvas').appendChild(cardElement);
 

@@ -1,12 +1,8 @@
 import {adForm} from './data.js';
 import {addPoints} from'./map.js';
-import {showAlert,showSuccess, showError,textAlert} from './util.js';
+import {showAlert,showSuccess, showError,textAlert} from './userMessages.js';
 import {changeFormState} from './page.js';
-
-const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
-const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
-const MAP_FILTERS_CLASS = '.map__filters';
-const POINTS_COUNT = 10;
+import {ADDRESS_POST,ADDRESS_GET,MAP_FILTERS_CLASS,POINTS_COUNT} from './map.js';
 
 function retrievingAndRenderingData () {
   fetch(ADDRESS_GET)
