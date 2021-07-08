@@ -1,13 +1,7 @@
 import {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement} from './util.js';
 
-const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
-const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
-
-<<<<<<< HEAD
-=======
 const adForm = document.querySelector('.ad-form');
 
->>>>>>> b56c6749a6dc24637549f496bd83dfebe3f98a34
 const placeTypes = ['palace', 'flat', 'house', 'bungalow','hotel'];
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -43,8 +37,4 @@ const generateObjects = (location) => ({
   photos: getRandomArray(photos),
 });
 
-<<<<<<< HEAD
 export {adForm};
-=======
-export {adForm,ADDRESS_POST,ADDRESS_GET};
->>>>>>> b56c6749a6dc24637549f496bd83dfebe3f98a34

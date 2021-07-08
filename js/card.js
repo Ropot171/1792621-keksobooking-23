@@ -3,13 +3,8 @@ const imgTemplate = document.querySelector('#card').content.querySelector('.popu
 const additionPhotos = function (element, list){
   element.innerHTML = '';
 
-<<<<<<< HEAD
   if (list) {
     list.forEach((item) => {
-=======
-  if (array) {
-    array.forEach((item) => {
->>>>>>> b56c6749a6dc24637549f496bd83dfebe3f98a34
       const photo = imgTemplate.cloneNode(true);
       photo.src = item;
       element.appendChild(photo);
@@ -30,13 +25,8 @@ const ApartmentType = {
 const additionFeatures = function (element, list) {
   {
     element.innerHTML = '';
-<<<<<<< HEAD
     if (list) {
       list.forEach((item) => {
-=======
-    if (array) {
-      array.forEach((item) => {
->>>>>>> b56c6749a6dc24637549f496bd83dfebe3f98a34
         const featureItem = document.createElement('li');
         featureItem.classList.add('popup__feature');
         featureItem.classList.add(`popup__feature--${item}`);
