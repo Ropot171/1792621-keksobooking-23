@@ -39,4 +39,7 @@ function getRandomElement(list) {
   return list[getRandomNumber(0, list.length - 1)];
 }
 
-export {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement};
+const KEY_ESC = 'Escape';
+const isEscEvent = (evt) => evt.key === KEY_ESC;
+
+export {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement,isEscEvent};

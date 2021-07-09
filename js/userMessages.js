@@ -1,41 +1,66 @@
-import {sendData} from './api.js';
-import {adForm} from './data.js';
+import {isEscEvent} from './util.js';
 
 const textAlert = 'Произошла ошибка сервера, попробуйте еще раз';
 
-const add = (e) => {
-  e.preventDefault();
-  const KEY_ESC = 'Escape';
-  (e.key === KEY_ESC || e.type === 'click');{
-    document.querySelector('.user-message').remove();
-    document.removeEventListener('keydown', add);
+const SHOW_TIME = 5000;
+
+const onDeleteMessage = (evt) => {
+  const message = document.querySelector('.displayMessage');
+  if (message) {
+    if (isEscEvent(evt) || evt.type === 'click') {
+      evt.preventDefault();
+      message.remove();
+      document.removeEventListener('keydown', onDeleteMessage);
+      document.removeEventListener('click', onDeleteMessage);
+    }
   }
 };
 
-const displayMessage = (template) => {
-  const message = template.cloneNode(true);
-  document.body.appendChild(message);
-  document.addEventListener('keydown', add);
-  message.addEventListener('click', add);
+const showMessageSendSuccess = () => {
+  const body = document.querySelector('body');
+  const successMessage = document.querySelector('#success').content.querySelector('.success');
+  const messageElement = successMessage.cloneNode(true);
+  messageElement.classList.add('displayMessage');
+  body.append(messageElement);
+
+  document.addEventListener('keydown', onDeleteMessage);
+  document.addEventListener('click', onDeleteMessage);
 };
 
-const setUserFormSubmit = (onSuccess) => {
-  adForm.addEventListener('submit', (e) => {
-    const ERROR_MESSAGE_TEMPLATE = document.querySelector('#error').content.querySelector('.error');
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    sendData(
-      () => onSuccess(),
-      () => displayMessage(ERROR_MESSAGE_TEMPLATE),
-      formData,
-    );
-  });
+const showMessageSendError = (error) => {
+  const body = document.querySelector('body');
+  const errorMessage = document.querySelector('#error').content.querySelector('.error');
+  const messageElement = errorMessage.cloneNode(true);
+  const errorButton = messageElement.querySelector('.error__button');
+  const errorMessageText = messageElement.querySelector('.error__message');
+  messageElement.classList.add('displayMessage');
+  body.append(messageElement);
+
+  if (error) {
+    errorMessageText.innerHTML += `<br>"${error}"`;
+  }
+  document.addEventListener('keydown', onDeleteMessage);
+  document.addEventListener('click', onDeleteMessage);
+  errorButton.addEventListener('click', onDeleteMessage);
 };
 
-const clearForm = () => {
-  const SUCCESS_MESSAGE_TEMPLATE = document.querySelector('#success').content.querySelector('.success');
-  adForm.reset();
-  displayMessage(SUCCESS_MESSAGE_TEMPLATE);
+const showMessageGetError = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+  alertContainer.textContent = message;
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, SHOW_TIME);
 };
 
-export {setUserFormSubmit, displayMessage, clearForm,textAlert};
+export { showMessageGetError, showMessageSendSuccess, showMessageSendError,textAlert };
