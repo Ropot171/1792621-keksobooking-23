@@ -1,47 +1,32 @@
-import {adForm} from './data.js';
 import {addPoints} from'./map.js';
-import {showAlert,showSuccess, showError,textAlert} from './userMessages.js';
-import {changeFormState} from './page.js';
-import {ADDRESS_POST,ADDRESS_GET,MAP_FILTERS_CLASS,POINTS_COUNT} from './map.js';
+import {textAlert} from './userMessages.js';
+import {ADDRESS_POST,ADDRESS_GET} from './map.js';
 
-function retrievingAndRenderingData () {
+function getData(onSuccess, onFail) {
   fetch(ADDRESS_GET)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      showAlert(textAlert);
-      changeFormState(MAP_FILTERS_CLASS);
-      throw Error();
-    })
-    .then((offers) => {
-      addPoints(offers.slice(0, POINTS_COUNT));
+    .then((response) => response.json())
+    .then((offers) => onSuccess(offers))
+    .then((offers) => addPoints(offers))
+    .catch(() => onFail(textAlert));
+};
+
+
+function sendData(onSuccess,onError,body) {
+  fetch(
+    ADDRESS_POST,
+    {
+      method: 'POST',
+      body,
+    },
+  ).then((response) => {
+    if (response.ok) {
+      onSuccess();
+    } else {
+      onError();
+    }})
+    .catch(() => {
+      onError();
     });
 }
 
-
-function postAndProcessingData() {
-  adForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-
-    const formData = new FormData(evt.target);
-
-    fetch(
-      ADDRESS_POST,
-      {
-        method: 'POST',
-        body: formData,
-      },
-    ).then((response) => {
-      if (response.ok) {
-        showSuccess();
-      } else {
-        showError();
-      }})
-      .catch(() => {
-        showError();
-      });
-  });
-}
-
-export {retrievingAndRenderingData,postAndProcessingData};
+export {getData,sendData};
