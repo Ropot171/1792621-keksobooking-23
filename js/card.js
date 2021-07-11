@@ -1,10 +1,10 @@
 const imgTemplate = document.querySelector('#card').content.querySelector('.popup__photo');
 
-const addPhotos = function (element, list){
+const addPhotos = function (element, photos){
   element.innerHTML = '';
 
-  if (list) {
-    list.forEach((item) => {
+  if (photos) {
+    photos.forEach((item) => {
       const photo = imgTemplate.cloneNode(true);
       photo.src = item;
       element.appendChild(photo);
@@ -22,11 +22,11 @@ const ApartmentType = {
   HOTEL: 'Отель',
 };
 
-const addFeatures = function (element, list) {
+const addFeatures = function (element, features) {
   {
     element.innerHTML = '';
-    if (list) {
-      list.forEach((item) => {
+    if (features) {
+      features.forEach((item) => {
         const featureItem = document.createElement('li');
         featureItem.classList.add('popup__feature');
         featureItem.classList.add(`popup__feature--${item}`);

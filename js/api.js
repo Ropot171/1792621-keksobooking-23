@@ -1,6 +1,8 @@
-import {textAlert} from './userMessages.js';
-import {ADDRESS_POST,ADDRESS_GET} from './map.js';
+import {SERVER_ERROR_TEXT} from './userMessages.js';
 import {clearForm} from './page.js';
+
+const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
+const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
 
 const getData = (onSuccess, onFail) => {
   fetch(ADDRESS_GET)
@@ -14,7 +16,7 @@ const getData = (onSuccess, onFail) => {
       onSuccess(ads);
     })
     .catch((error) => {
-      onFail(`${textAlert}: "${error}"`);
+      onFail(`${SERVER_ERROR_TEXT}: "${error}"`);
     });
 };
 

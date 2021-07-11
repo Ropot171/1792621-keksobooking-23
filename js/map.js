@@ -3,8 +3,6 @@ import {changePageState} from './page.js';
 import {getData} from './api.js';
 import {showMessageGetError} from './userMessages.js';
 
-const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
-const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
 const MAP_FILTERS_CLASS = '.map__filters';
 const POINTS_COUNT = 10;
 const addressInput = document.querySelector('#address');
@@ -102,4 +100,4 @@ const resetDataMap = () => {
   addressInput.value = `${CENTER_TOKYO_COORDINATES.lat.toFixed(5)}, ${CENTER_TOKYO_COORDINATES.lng.toFixed(5)}`;
 };
 
-export {createAdMarker, resetDataMap, createMarkersGroup,ADDRESS_POST,ADDRESS_GET,MAP_FILTERS_CLASS};
+export {createAdMarker, resetDataMap, createMarkersGroup,MAP_FILTERS_CLASS};
