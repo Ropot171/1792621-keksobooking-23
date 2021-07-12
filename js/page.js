@@ -19,7 +19,6 @@ function handleReset(evt) {
 }
 
 function handleSubmit (evt){
-
   evt.preventDefault();
   const formData = new FormData(evt.target);
 
