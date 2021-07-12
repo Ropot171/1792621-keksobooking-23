@@ -1,4 +1,4 @@
-import {ads} from './data.js';
-import {addPoints} from'./map.js';
+import './map.js';
+import './page.js';
+import './card.js';
 
-addPoints(ads);

@@ -1,16 +1,85 @@
-import {adForm} from './data.js';
 import {renderCard} from './card.js';
 import {changePageState} from './page.js';
+import {getData} from './api.js';
+import {showMessageGetError} from './userMessages.js';
 
+const MAP_FILTERS_CLASS = '.map__filters';
+const POINTS_COUNT = 10;
+const addressInput = document.querySelector('#address');
+const map = L.map('map-canvas');
 
-const map = L.map('map-canvas')
+const CENTER_TOKYO_COORDINATES = {
+  lat: 35.67500,
+  lng: 139.75000,
+};
+
+const mainIcon = L.icon(
+  {
+    iconUrl: 'img/main-pin.svg',
+    iconSize: [52, 52],
+    iconAnchor: [26, 52],
+  },
+);
+const mainMarker = L.marker(
+  {
+    lat: CENTER_TOKYO_COORDINATES.lat,
+    lng: CENTER_TOKYO_COORDINATES.lng,
+  },
+  {
+    draggable: true,
+    icon: mainIcon,
+  },
+);
+mainMarker.addTo(map);
+addressInput.value = `${mainMarker.getLatLng().lat.toFixed(5)}, ${mainMarker.getLatLng().lng.toFixed(5)}`;
+mainMarker.on('moveend', (evt) => {
+  addressInput.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
+});
+
+const markerGroup = L.layerGroup().addTo(map);
+
+const createAdMarker = (dataAd) => {
+  const {location} = dataAd;
+  const iconAd = L.icon({
+    iconUrl: 'img/pin.svg',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+  const markerAd = L.marker(
+    {
+      lat: location.lat,
+      lng: location.lng,
+    },
+    {
+      icon: iconAd,
+    },
+    {
+      keepInView: true,
+    },
+  );
+  markerAd.addTo(markerGroup).bindPopup(renderCard(dataAd));
+};
+
+const createMarkersGroup = (similarAds) => {
+  similarAds.forEach((card) => {
+    createAdMarker(card);
+  });
+};
+
+map
   .on('load', () => {
     changePageState(false);
+    getData(
+      (ads) => {
+        createMarkersGroup(ads.slice(0, POINTS_COUNT));
+      },
+      showMessageGetError,
+    );
   })
   .setView({
-    lat: 35.6804,
-    lng: 139.769,
-  }, 14);
+    lat: CENTER_TOKYO_COORDINATES.lat,
+    lng: CENTER_TOKYO_COORDINATES.lng,
+  }, 12);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -19,66 +88,16 @@ L.tileLayer(
   },
 ).addTo(map);
 
-const mainIcon = L.icon({ //маркеру создаем иконку правильную
-  iconUrl: 'img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+const clearPage = () => {
+  map.setView(
+    CENTER_TOKYO_COORDINATES,
+    12);
 
-const additionalIcon = L.icon({
-  iconUrl: 'img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
-
-const mainMarker = L.marker( //добавляем метку, координаты токио
-  {
-    lat: 35.6804,
-    lng: 139.769,
-  },
-  {
-    draggable: true, //можно перемещаться по карте
-    icon: mainIcon,
-  },
-);
-
-mainMarker.addTo(map);
-
-function addressValue (marker) {
-  const coordinates = `${marker.getLatLng().lat.toFixed(5)},${marker.getLatLng().lng.toFixed(5)}`;
-  return coordinates;
-}
-
-adForm.address.value = addressValue(mainMarker);
-
-mainMarker.on('mousemove', (evt) => {
-  adForm.address.value = addressValue(evt.target);
-});
-
-const markerGroup = L.layerGroup().addTo(map);
-
-const createMarker = (ad) => {
-  const marker = L.marker(
-    ad.location,
-    {
-      icon: additionalIcon,
-    },
+  mainMarker.setLatLng(
+    CENTER_TOKYO_COORDINATES,
   );
-  return marker;
+
+  addressInput.value = `${CENTER_TOKYO_COORDINATES.lat.toFixed(5)}, ${CENTER_TOKYO_COORDINATES.lng.toFixed(5)}`;
 };
 
-function addPoints(ads) {
-  ads.forEach((ad) => {
-    const marker = createMarker(ad);
-    marker
-      .addTo(markerGroup)
-      .bindPopup(
-        renderCard(ad),
-        {
-          keepInView: true,
-        },
-      );
-  });
-}
-
-export {addPoints};
+export {createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS};

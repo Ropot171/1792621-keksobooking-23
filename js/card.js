@@ -1,13 +1,17 @@
 const imgTemplate = document.querySelector('#card').content.querySelector('.popup__photo');
 
-const getPhotos = function (element, array){
+const addPhotos = function (element, photos){
   element.innerHTML = '';
 
-  array.forEach((item) => {
-    const photo = imgTemplate.cloneNode(true);
-    photo.src = item;
-    element.appendChild(photo);
-  });
+  if (photos) {
+    photos.forEach((item) => {
+      const photo = imgTemplate.cloneNode(true);
+      photo.src = item;
+      element.appendChild(photo);
+    });
+  } else {
+    element.classList.add('hidden');
+  }
 };
 
 const ApartmentType = {
@@ -18,16 +22,19 @@ const ApartmentType = {
   HOTEL: 'Отель',
 };
 
-const getFeatures = function (element, array) {
+const addFeatures = function (element, features) {
   {
     element.innerHTML = '';
-
-    array.forEach((item) => {
-      const featureItem = document.createElement('li');
-      featureItem.classList.add('popup__feature');
-      featureItem.classList.add(`popup__feature--${item}`);
-      element.appendChild(featureItem);
-    });
+    if (features) {
+      features.forEach((item) => {
+        const featureItem = document.createElement('li');
+        featureItem.classList.add('popup__feature');
+        featureItem.classList.add(`popup__feature--${item}`);
+        element.appendChild(featureItem);
+      });
+    } else {
+      element.classList.add('hidden');
+    }
   }
 };
 
@@ -64,9 +71,9 @@ function renderCard(card) {
   setTextContent(cardElement.querySelector('.popup__type'), ApartmentType[card.offer.type.toUpperCase()]);
   setTextContent(cardElement.querySelector('.popup__text--capacity'), generateRoomText(card));
   setTextContent(cardElement.querySelector('.popup__text--time'),`Заезд после ${card.offer.checkin}, выезд до ${card.offer.checkout}`);
-  getFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
+  addFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
   setTextContent(cardElement.querySelector('.popup__description'),card.offer.description);
-  getPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
+  addPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
   setTextContent(cardElement.querySelector('.popup__avatar'),card.author.avatar);
   document.querySelector('#map-canvas').appendChild(cardElement);
 
