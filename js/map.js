@@ -31,7 +31,7 @@ const mainMarker = L.marker(
   },
 );
 mainMarker.addTo(map);
-addressInput.value = `${mainMarker._latlng.lat.toFixed(5)}, ${mainMarker._latlng.lng.toFixed(5)}`;
+addressInput.value = `${mainMarker.getLatLng().lat.toFixed(5)}, ${mainMarker.getLatLng().lng.toFixed(5)}`;
 mainMarker.on('moveend', (evt) => {
   addressInput.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
 });
@@ -88,7 +88,7 @@ L.tileLayer(
   },
 ).addTo(map);
 
-const resetDataMap = () => {
+const clearPage = () => {
   map.setView(
     CENTER_TOKYO_COORDINATES,
     12);
@@ -100,4 +100,4 @@ const resetDataMap = () => {
   addressInput.value = `${CENTER_TOKYO_COORDINATES.lat.toFixed(5)}, ${CENTER_TOKYO_COORDINATES.lng.toFixed(5)}`;
 };
 
-export {createAdMarker, resetDataMap, createMarkersGroup,MAP_FILTERS_CLASS};
+export {createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS};

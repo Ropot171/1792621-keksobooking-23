@@ -1,5 +1,4 @@
 import {SERVER_ERROR_TEXT} from './userMessages.js';
-import {clearForm} from './page.js';
 
 const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
 const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
@@ -31,7 +30,6 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-        clearForm();
       } else {
         throw new Error(`${response.status} - ${response.statusText}`);
       }

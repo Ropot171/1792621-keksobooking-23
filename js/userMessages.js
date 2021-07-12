@@ -1,4 +1,5 @@
 import {isEscEvent} from './util.js';
+import {clearForm} from './page.js';
 
 const SERVER_ERROR_TEXT = 'Произошла ошибка сервера, попробуйте еще раз';
 
@@ -25,6 +26,7 @@ const showMessageSendSuccess = () => {
 
   document.addEventListener('keydown', deleteMessage);
   document.addEventListener('click', deleteMessage);
+  clearForm();
 };
 
 const showMessageSendError = (error) => {
@@ -42,6 +44,7 @@ const showMessageSendError = (error) => {
   document.addEventListener('keydown', deleteMessage);
   document.addEventListener('click', deleteMessage);
   errorButton.addEventListener('click', deleteMessage);
+  clearForm();
 };
 
 const showMessageGetError = (message) => {
