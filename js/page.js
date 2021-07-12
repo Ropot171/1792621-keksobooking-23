@@ -7,32 +7,19 @@ import {showMessageSendSuccess, showMessageSendError} from './userMessages.js';
 const formFilter = document.querySelector('.map__filters');
 const resetButton = document.querySelector('.ad-form__reset');
 
-function changeFormState(isDisabled) {
-  [adForm, formFilter].forEach((form) => {
-    for (const element of form.elements) {
-      element.disabled = isDisabled;
-    }
-  });
-}
-
-function changePageState(isDisabled) {
-  adForm.classList.toggle('ad-form--disabled', isDisabled);
-  formFilter.classList.toggle('ad-form--disabled', isDisabled);
-  changeFormState(isDisabled);
-}
-
 const clearForm = () => {
   formFilter.reset();
   adForm.reset();
   resetDataMap();
 };
 
-resetButton.addEventListener('click', (evt) => {
+function handleReset(evt) {
   evt.preventDefault();
   clearForm();
-});
+}
 
-adForm.addEventListener('submit', (evt) => {
+function handleSubmit (evt){
+
   evt.preventDefault();
   const formData = new FormData(evt.target);
 
@@ -40,6 +27,27 @@ adForm.addEventListener('submit', (evt) => {
     showMessageSendSuccess,
     showMessageSendError,
     formData);
-});
+}
+
+function changeFormState(isDisabled) {
+  [adForm, formFilter].forEach((form) => {
+    for (const element of form.elements) {
+      element.disabled = isDisabled;
+    }
+  });
+  if (isDisabled) {
+    adForm.removeEventListener('submit', handleSubmit);
+    resetButton.removeEventListener('click', handleReset);
+  } else {
+    adForm.addEventListener('submit', handleSubmit);
+    resetButton.addEventListener('click', handleReset);
+  }
+}
+
+function changePageState(isDisabled) {
+  adForm.classList.toggle('ad-form--disabled', isDisabled);
+  formFilter.classList.toggle('ad-form--disabled', isDisabled);
+  changeFormState(isDisabled);
+}
 
 export {changePageState,changeFormState, clearForm};
