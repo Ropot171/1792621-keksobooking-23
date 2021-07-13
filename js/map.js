@@ -102,7 +102,7 @@ const clearPage = () => {
   );
 
   addressInput.value = `${CENTER_TOKYO_COORDINATES.lat.toFixed(5)}, ${CENTER_TOKYO_COORDINATES.lng.toFixed(5)}`;
-  getData((ads) => createMarkersGroup(ads.slice(0, MAX_NUM_ADS)));
+  getData((ads) => createMarkersGroup(ads.slice(0, POINTS_COUNT)));
 };
 
 export {markerGroup,createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS,POINTS_COUNT};

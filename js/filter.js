@@ -1,7 +1,6 @@
-import { debounce } from './util.js';
-import { markerGroup, createMarkersGroup } from './map.js';
+import {debounce} from './util.js';
+import {markerGroup, createMarkersGroup, POINTS_COUNT} from './map.js';
 
-const MAX_NUM_ADS = 10;
 const DEFAUL_VALUE = 'any';
 const PRICES_VALUE = {
   low: 'low',
@@ -51,7 +50,7 @@ const onFilter = (ads) => {
     }
     return true;
   });
-  createMarkersGroup(filteredAds.slice(0, MAX_NUM_ADS));
+  createMarkersGroup(filteredAds.slice(0, POINTS_COUNT));
 };
 
 const addFilters = (ads) => {
@@ -68,4 +67,4 @@ const addFilters = (ads) => {
   });
 };
 
-export { onFilter, addFilters, MAX_NUM_ADS };
+export {onFilter, addFilters};
