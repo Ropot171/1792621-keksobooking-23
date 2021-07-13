@@ -42,4 +42,12 @@ function getRandomElement(list) {
 const KEY_ESC = 'Escape';
 const isEscEvent = (evt) => evt.key === KEY_ESC;
 
-export {getRandomNumber, getRandomFloat,getRandomArray, getRandomElement,isEscEvent};
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {isEscEvent,debounce};

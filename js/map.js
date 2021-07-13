@@ -2,6 +2,7 @@ import {renderCard} from './card.js';
 import {changePageState} from './page.js';
 import {getData} from './api.js';
 import {showMessageGetError} from './userMessages.js';
+import { onFilter, addFilters, MAX_NUM_ADS } from './filter.js';
 
 const MAP_FILTERS_CLASS = '.map__filters';
 const POINTS_COUNT = 10;
@@ -71,7 +72,8 @@ map
     changePageState(false);
     getData(
       (ads) => {
-        createMarkersGroup(ads.slice(0, POINTS_COUNT));
+        onFilter(ads);
+        addFilters(ads);
       },
       showMessageGetError,
     );
@@ -89,6 +91,8 @@ L.tileLayer(
 ).addTo(map);
 
 const clearPage = () => {
+  markerGroup.clearLayers();
+
   map.setView(
     CENTER_TOKYO_COORDINATES,
     12);
@@ -98,6 +102,7 @@ const clearPage = () => {
   );
 
   addressInput.value = `${CENTER_TOKYO_COORDINATES.lat.toFixed(5)}, ${CENTER_TOKYO_COORDINATES.lng.toFixed(5)}`;
+  getData((ads) => createMarkersGroup(ads.slice(0, MAX_NUM_ADS)));
 };
 
-export {createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS};
+export {markerGroup,createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS,POINTS_COUNT};
