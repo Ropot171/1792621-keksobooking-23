@@ -5,7 +5,7 @@ const SERVER_ERROR_TEXT = 'Произошла ошибка сервера, по�
 
 const SHOW_TIME = 5000;
 
-const deleteMessage = (evt) => {
+function deleteMessage(evt) {
   const message = document.querySelector('.message');
   if (message) {
     if (isEscEvent(evt) || evt.type === 'click') {
@@ -15,9 +15,9 @@ const deleteMessage = (evt) => {
       document.removeEventListener('click', deleteMessage);
     }
   }
-};
+}
 
-const showMessageSendSuccess = () => {
+function showMessageSendSuccess() {
   const body = document.querySelector('body');
   const successMessage = document.querySelector('#success').content.querySelector('.success');
   const messageElement = successMessage.cloneNode(true);
@@ -27,9 +27,9 @@ const showMessageSendSuccess = () => {
   document.addEventListener('keydown', deleteMessage);
   document.addEventListener('click', deleteMessage);
   clearForm();
-};
+}
 
-const showMessageSendError = (error) => {
+function showMessageSendError(error) {
   const body = document.querySelector('body');
   const errorMessage = document.querySelector('#error').content.querySelector('.error');
   const messageElement = errorMessage.cloneNode(true);
@@ -45,9 +45,9 @@ const showMessageSendError = (error) => {
   document.addEventListener('click', deleteMessage);
   errorButton.addEventListener('click', deleteMessage);
   clearForm();
-};
+}
 
-const showMessageGetError = (message) => {
+function showMessageGetError(message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
   alertContainer.style.position = 'absolute';
@@ -64,6 +64,6 @@ const showMessageGetError = (message) => {
   setTimeout(() => {
     alertContainer.remove();
   }, SHOW_TIME);
-};
+}
 
-export { showMessageGetError, showMessageSendSuccess, showMessageSendError,SERVER_ERROR_TEXT };
+export {showMessageGetError, showMessageSendSuccess, showMessageSendError,SERVER_ERROR_TEXT};

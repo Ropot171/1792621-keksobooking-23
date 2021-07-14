@@ -6,11 +6,11 @@ import {showMessageSendSuccess, showMessageSendError} from './userMessages.js';
 const formFilter = document.querySelector('.map__filters');
 const resetButton = document.querySelector('.ad-form__reset');
 
-const clearForm = () => {
+function clearForm() {
   formFilter.reset();
   adForm.reset();
   clearPage();
-};
+}
 
 function handleReset(evt) {
   evt.preventDefault();

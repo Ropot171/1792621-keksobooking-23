@@ -1,6 +1,14 @@
 const imgTemplate = document.querySelector('#card').content.querySelector('.popup__photo');
 
-const addPhotos = function (element, photos){
+const ApartmentType = {
+  PALACE: 'Дворец',
+  FLAT: 'Квартира',
+  HOUSE: 'Дом',
+  BUNGALO: 'Бунгало',
+  HOTEL: 'Отель',
+};
+
+function addPhotos(element, photos){
   element.innerHTML = '';
 
   if (photos) {
@@ -12,17 +20,9 @@ const addPhotos = function (element, photos){
   } else {
     element.classList.add('hidden');
   }
-};
+}
 
-const ApartmentType = {
-  PALACE: 'Дворец',
-  FLAT: 'Квартира',
-  HOUSE: 'Дом',
-  BUNGALO: 'Бунгало',
-  HOTEL: 'Отель',
-};
-
-const addFeatures = function (element, features) {
+function addFeatures (element, features) {
   {
     element.innerHTML = '';
     if (features) {
@@ -36,7 +36,7 @@ const addFeatures = function (element, features) {
       element.classList.add('hidden');
     }
   }
-};
+}
 
 function generateRoomText({offer}) {
   const room = offer.rooms;
