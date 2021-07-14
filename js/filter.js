@@ -55,7 +55,7 @@ function renderAdsMarkers(ads) {
   return createMarkersGroup(filterAds(ads).slice(0, POINTS_COUNT));
 }
 
-const addFilterListeners = (ads) => {
+function addFilterListeners(ads) {
   const debounced = debounceArgs(() => {
     markerGroup.clearLayers();
     renderAdsMarkers(ads);
@@ -67,6 +67,6 @@ const addFilterListeners = (ads) => {
   housingFeatures.forEach((feature) => {
     feature.addEventListener('change', debounced);
   });
-};
+}
 
 export {renderAdsMarkers, addFilterListeners};

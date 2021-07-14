@@ -39,7 +39,7 @@ mainMarker.on('moveend', (evt) => {
 
 const markerGroup = L.layerGroup().addTo(map);
 
-const createAdMarker = (dataAd) => {
+function createAdMarker(dataAd) {
   const {location} = dataAd;
   const iconAd = L.icon({
     iconUrl: 'img/pin.svg',
@@ -59,13 +59,13 @@ const createAdMarker = (dataAd) => {
     },
   );
   markerAd.addTo(markerGroup).bindPopup(renderCard(dataAd));
-};
+}
 
-const createMarkersGroup = (similarAds) => {
+function createMarkersGroup(similarAds) {
   similarAds.forEach((card) => {
     createAdMarker(card);
   });
-};
+}
 
 map
   .on('load', () => {
@@ -90,7 +90,7 @@ L.tileLayer(
   },
 ).addTo(map);
 
-const clearPage = () => {
+function clearPage() {
   markerGroup.clearLayers();
 
   map.setView(
@@ -103,6 +103,6 @@ const clearPage = () => {
 
   addressInput.value = `${CENTER_TOKYO_COORDINATES.lat.toFixed(5)}, ${CENTER_TOKYO_COORDINATES.lng.toFixed(5)}`;
   getData((ads) => createMarkersGroup(ads.slice(0, POINTS_COUNT)));
-};
+}
 
 export {markerGroup,createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS,POINTS_COUNT};

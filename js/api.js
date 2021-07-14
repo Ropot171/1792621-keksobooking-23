@@ -3,7 +3,7 @@ import {SERVER_ERROR_TEXT} from './userMessages.js';
 const ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
 const ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
 
-const getData = (onSuccess, onFail) => {
+function getData(onSuccess, onFail) {
   fetch(ADDRESS_GET)
     .then((response) => {
       if (response.ok) {
@@ -19,7 +19,7 @@ const getData = (onSuccess, onFail) => {
     });
 };
 
-const sendData = (onSuccess, onFail, body) => {
+function sendData(onSuccess, onFail, body) {
   fetch(
     ADDRESS_POST,
     {
@@ -37,6 +37,6 @@ const sendData = (onSuccess, onFail, body) => {
     .catch((error) => {
       onFail(error);
     });
-};
+}
 
 export {getData, sendData};
