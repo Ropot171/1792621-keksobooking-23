@@ -74,7 +74,7 @@ function renderCard(card) {
   addFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
   setTextContent(cardElement.querySelector('.popup__description'),card.offer.description);
   addPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
-  setTextContent(cardElement.querySelector('.popup__avatar'),card.author.avatar);
+  cardElement.querySelector('.popup__avatar').src= card.author.avatar;
   document.querySelector('#map-canvas').appendChild(cardElement);
 
   return cardElement;

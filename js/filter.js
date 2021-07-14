@@ -52,7 +52,7 @@ function filterAds(ads) {
 }
 
 function renderAdsMarkers(ads) {
-  return createMarkersGroup(filterAds(ads).slice(0, POINTS_COUNT)); 
+  return createMarkersGroup(filterAds(ads).slice(0, POINTS_COUNT));
 }
 
 const addFilterListeners = (ads) => {
