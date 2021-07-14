@@ -3,7 +3,6 @@ import {clearPage} from './map.js';
 import {sendData} from './api.js';
 import {showMessageSendSuccess, showMessageSendError} from './userMessages.js';
 
-
 const formFilter = document.querySelector('.map__filters');
 const resetButton = document.querySelector('.ad-form__reset');
 
