@@ -1,4 +1,4 @@
-import {debounce} from './util.js';
+import {debounceArgs} from './util.js';
 import {markerGroup, createMarkersGroup, POINTS_COUNT} from './map.js';
 
 const DEFAUL_VALUE = 'any';
@@ -11,7 +11,6 @@ const PRICES_RANGE = {
   low: 10000,
   high: 50000,
 };
-
 const mapFilters = document.querySelector('.map__filters');
 const housingType = mapFilters.querySelector('#housing-type');
 const housingPrice = mapFilters.querySelector('#housing-price');
@@ -19,8 +18,8 @@ const housingRooms = mapFilters.querySelector('#housing-rooms');
 const housingGuests = mapFilters.querySelector('#housing-guests');
 const housingFeatures = mapFilters.querySelectorAll('.map__checkbox');
 
-const onFilter = (ads) => {
-  const filteredAds = ads.filter((ad) => {
+function filterAds(ads) {
+  return ads.filter((ad) => {
     if (housingType.value !== DEFAUL_VALUE && ad.offer.type !== housingType.value) {
       return false;
     }
@@ -50,13 +49,16 @@ const onFilter = (ads) => {
     }
     return true;
   });
-  createMarkersGroup(filteredAds.slice(0, POINTS_COUNT));
-};
+}
 
-const addFilters = (ads) => {
-  const debounced = debounce(() => {
+function renderAdsMarkers(ads) {
+  return createMarkersGroup(filterAds(ads).slice(0, POINTS_COUNT)); 
+}
+
+const addFilterListeners = (ads) => {
+  const debounced = debounceArgs(() => {
     markerGroup.clearLayers();
-    onFilter(ads);
+    renderAdsMarkers(ads);
   });
   housingType.addEventListener('change', debounced);
   housingPrice.addEventListener('change', debounced);
@@ -67,4 +69,4 @@ const addFilters = (ads) => {
   });
 };
 
-export {onFilter, addFilters};
+export {renderAdsMarkers, addFilterListeners};

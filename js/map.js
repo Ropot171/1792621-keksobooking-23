@@ -2,7 +2,7 @@ import {renderCard} from './card.js';
 import {changePageState} from './page.js';
 import {getData} from './api.js';
 import {showMessageGetError} from './userMessages.js';
-import {onFilter, addFilters} from './filter.js';
+import {renderAdsMarkers, addFilterListeners} from './filter.js';
 
 const MAP_FILTERS_CLASS = '.map__filters';
 const POINTS_COUNT = 10;
@@ -72,8 +72,8 @@ map
     changePageState(false);
     getData(
       (ads) => {
-        onFilter(ads);
-        addFilters(ads);
+        renderAdsMarkers(ads);
+        addFilterListeners(ads);
       },
       showMessageGetError,
     );
