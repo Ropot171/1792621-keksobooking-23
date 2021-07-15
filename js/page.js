@@ -1,15 +1,15 @@
-import {adForm} from './data.js';
-import {clearPage} from './map.js';
+import {resetMap} from './map.js';
 import {sendData} from './api.js';
 import {showMessageSendSuccess, showMessageSendError} from './userMessages.js';
 
+const adForm = document.querySelector('.ad-form');
 const formFilter = document.querySelector('.map__filters');
 const resetButton = document.querySelector('.ad-form__reset');
 
 function clearForm() {
   formFilter.reset();
   adForm.reset();
-  clearPage();
+  resetMap();
 }
 
 function handleReset(evt) {

@@ -44,7 +44,6 @@ function showMessageSendError(error) {
   document.addEventListener('keydown', deleteMessage);
   document.addEventListener('click', deleteMessage);
   errorButton.addEventListener('click', deleteMessage);
-  clearForm();
 }
 
 function showMessageGetError(message) {

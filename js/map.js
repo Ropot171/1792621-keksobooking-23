@@ -90,7 +90,7 @@ L.tileLayer(
   },
 ).addTo(map);
 
-function clearPage() {
+function resetMap() {
   markerGroup.clearLayers();
 
   map.setView(
@@ -105,4 +105,4 @@ function clearPage() {
   getData((ads) => createMarkersGroup(ads.slice(0, POINTS_COUNT)));
 }
 
-export {markerGroup,createAdMarker, clearPage, createMarkersGroup,MAP_FILTERS_CLASS,POINTS_COUNT};
+export {markerGroup,createAdMarker, resetMap, createMarkersGroup,MAP_FILTERS_CLASS,POINTS_COUNT};

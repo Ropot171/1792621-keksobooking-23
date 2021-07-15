@@ -1,4 +1,4 @@
-import {debounceArgs} from './util.js';
+import {debounce} from './util.js';
 import {markerGroup, createMarkersGroup, POINTS_COUNT} from './map.js';
 
 const DEFAUL_VALUE = 'any';
@@ -56,7 +56,7 @@ function renderAdsMarkers(ads) {
 }
 
 function addFilterListeners(ads) {
-  const debounced = debounceArgs(() => {
+  const debounced = debounce(() => {
     markerGroup.clearLayers();
     renderAdsMarkers(ads);
   });

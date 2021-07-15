@@ -1,4 +1,4 @@
-import {adForm} from './data.js';
+const adForm = document.querySelector('.ad-form');
 
 const ROOMS_FOR_GUESTS = {
   1: ['1'],
