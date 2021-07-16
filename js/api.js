@@ -17,7 +17,7 @@ function getData(onSuccess, onFail) {
     .catch((error) => {
       onFail(`${SERVER_ERROR_TEXT}: "${error}"`);
     });
-};
+}
 
 function sendData(onSuccess, onFail, body) {
   fetch(
