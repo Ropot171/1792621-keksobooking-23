@@ -64,8 +64,12 @@ function generateCheckinText(card) {
   return card.offer.checkin && card.offer.checkout ? text : undefined;
 }
 
-function generateAvatar(element, card) {
-  return   card.author.avatar ? element.querySelector('.popup__avatar').src = card.author.avatar : element.querySelector('.popup__avatar').classList.add('hidden');
+function setAvatar(element, card) {
+  if (card.author.avatar) {
+    element.querySelector('.popup__avatar').src = card.author.avatar;
+  } else {
+    element.querySelector('.popup__avatar').classList.add('hidden');
+  }
 }
 
 function setTextContent(element, textContent) {
@@ -88,7 +92,7 @@ function renderCard(card) {
   addFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
   setTextContent(cardElement.querySelector('.popup__description'),card.offer.description);
   addPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
-  generateAvatar(cardElement, card);
+  setAvatar(cardElement, card);
   return cardElement;
 }
 
