@@ -54,12 +54,14 @@ function generateRoomText(offer) {
 
 }
 
-function generatePriceText(arg) {
-  return `${arg.offer.price} ₽/ночь`;
+function generatePriceText(card) {
+  const text = `${card.offer.price} ₽/ночь`;
+  return Number.isFinite(card.offer.price) ? text : undefined;
 }
 
-function generateCheckinText(arg) {
-  return `Заезд после ${arg.offer.checkin}, выезд до ${arg.offer.checkout}`;
+function generateCheckinText(card) {
+  const text = `Заезд после ${card.offer.checkin}, выезд до ${card.offer.checkout}`;
+  return card.offer.checkin && card.offer.checkout ? text : undefined;
 }
 
 function setTextContent(element, textContent) {
@@ -67,12 +69,6 @@ function setTextContent(element, textContent) {
     element.textContent = textContent;
   } else {
     element.classList.add('hidden');
-  }
-}
-
-function setAvatar(element) {
-  if (!element) {
-    return element.classList.add('hidden');
   }
 }
 
@@ -88,7 +84,7 @@ function renderCard(card) {
   addFeatures(cardElement.querySelector('.popup__features'), card.offer.features);
   setTextContent(cardElement.querySelector('.popup__description'),card.offer.description);
   addPhotos(cardElement.querySelector('.popup__photos'), card.offer.photos);
-  setAvatar(cardElement.querySelector('.popup__avatar').src= card.author.avatar);
+  card.author.avatar ? cardElement.querySelector('.popup__avatar').src = card.author.avatar : cardElement.querySelector('.popup__avatar').classList.add('hidden');
 
   return cardElement;
 }

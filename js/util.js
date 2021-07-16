@@ -2,7 +2,7 @@ const KEY_ESC = 'Escape';
 
 const isEscEvent = (evt) => evt.key === KEY_ESC;
 
-function debounce (callback, timeoutDelay = 500) {
+function debouncedMarkersRender (callback, timeoutDelay = 500) {
   let timeoutId;
   return (...args) => {
     clearTimeout(timeoutId);
@@ -10,4 +10,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export {isEscEvent,debounce};
+export {isEscEvent,debouncedMarkersRender};
