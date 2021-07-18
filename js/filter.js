@@ -1,4 +1,4 @@
-import {debouncedMarkersRender} from './util.js';
+import {debounce} from './util.js';
 import {markerGroup, createMarkersGroup, POINTS_COUNT} from './map.js';
 
 const DEFAUL_VALUE = 'any';
@@ -56,16 +56,16 @@ function renderAdsMarkers(ads) {
 }
 
 function addFilterListeners(ads) {
-  const debounced = debouncedMarkersRender(() => {
+  const debouncedMarkersRender = debounce(() => {
     markerGroup.clearLayers();
     renderAdsMarkers(ads);
   });
-  housingType.addEventListener('change', debounced);
-  housingPrice.addEventListener('change', debounced);
-  housingRooms.addEventListener('change', debounced);
-  housingGuests.addEventListener('change', debounced);
+  housingType.addEventListener('change', debouncedMarkersRender);
+  housingPrice.addEventListener('change', debouncedMarkersRender);
+  housingRooms.addEventListener('change', debouncedMarkersRender);
+  housingGuests.addEventListener('change', debouncedMarkersRender);
   housingFeatures.forEach((feature) => {
-    feature.addEventListener('change', debounced);
+    feature.addEventListener('change', debouncedMarkersRender);
   });
 }
 

@@ -6,7 +6,7 @@ function isEscEvent(evt) {
   return evt.key === KEY_ESC;
 }
 
-function debouncedMarkersRender (callback, timeoutDelay = RERENDER_DELAY) {
+function debounce (callback, timeoutDelay = RERENDER_DELAY) {
   let timeoutId;
   return (...args) => {
     clearTimeout(timeoutId);
@@ -14,4 +14,4 @@ function debouncedMarkersRender (callback, timeoutDelay = RERENDER_DELAY) {
   };
 }
 
-export {isEscEvent,debouncedMarkersRender};
+export {isEscEvent,debounce};
