@@ -1,12 +1,12 @@
 const KEY_ESC = 'Escape';
 
-const RERENDER_DELAY = 500;
+const DEBOUNCE_DELAY = 500;
 
 function isEscEvent(evt) {
   return evt.key === KEY_ESC;
 }
 
-function debounce (callback, timeoutDelay = RERENDER_DELAY) {
+function debounce (callback, timeoutDelay = DEBOUNCE_DELAY) {
   let timeoutId;
   return (...args) => {
     clearTimeout(timeoutId);
